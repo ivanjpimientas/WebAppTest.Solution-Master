@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WebApp - @ViewData["Title"]</title>
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/css/bootstrap/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/adminlte/plugins/fontawesome-free/css/all.min.css">
+    <!-- Overlay Scrollbars -->
+    <link rel="stylesheet" href="~/css/plugins/OverlayScrollbars.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Bootstrap TagsInput CSS -->
+    <link rel="stylesheet" href="~/css/plugins/tagsinput.css">
+    <!-- Summernote CSS -->
+    <link rel="stylesheet" href="~/adminlte/plugins/summernote/summernote.css">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/css/plugins/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/css/plugins/responsive.bootstrap.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/adminlte/dist/css/adminlte.min.css">
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    @RenderSection("Styles", required: false)
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+
+    <!-- Site wrapper -->
+    <div class="wrapper">
+
+        @await Html.PartialAsync("_Header")
+
+        <!-- =============================================== -->
+        <!-- Control Sidebar -->
+        @await Html.PartialAsync("_SideBar")
+
+        <!-- =============================================== -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper" style="min-height: 247px;">
+
+            @await Html.PartialAsync("_StatusMessage", TempData["StatusMessage"])
+            @RenderBody()
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- =============================================== -->
+        <!-- Page footer. -->
+        @await Html.PartialAsync("_Footer")
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="~/js/plugins/popper.min.js"></script>
+    <!-- Bootstrap 4.3 -->
+    <script src="~/js/bootstrap/bootstrap.min.js"></script>
+    <!-- Popper -->
+    <script src="~/js/plugins/popper.min.js"></script>
+    <!-- Jquery Overlay Scrollbars -->
+    <script src="~/js/plugins/jquery.overlayScrollbars.min.js"></script>
+
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+
+    <!-- Bootstrap TagsInput JS -->
+    <script src="~/js/plugins/tagsinput.js"></script>
+    <!-- Summernote JS -->
+    <script src="~/adminlte/plugins/summernote/summernote.js"></script>
+    <!-- SweetAlert JS -->
+    <script src="~/lib/sweetalert2/sweetalert2.all.js"></script>
+
+    <!-- DataTables https://datatables.net/ -->
+    <script src="~/js/plugins/jquery.dataTables.min.js"></script>
+    <script src="~/js/plugins/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/plugins/dataTables.responsive.min.js"></script>
+    <script src="~/js/plugins/responsive.bootstrap.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/adminlte/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/adminlte/plugins/sparklines/sparkline.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/adminlte/dist/js/adminlte.js"></script>
+
+    <script src="~/scripts/namespace.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.sidebar-menu').tree()
+        })
+    </script>
+
+    <script src="~/js/script.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+    @await Html.PartialAsync("_NotificationPanel")
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+</body>
+</html>

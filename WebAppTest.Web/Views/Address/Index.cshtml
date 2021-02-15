@@ -1,0 +1,101 @@
+﻿@model IEnumerable<WebAppTest.Core.Entities.Address>
+@{
+    ViewData["Title"] = "Addresses Manager";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Addresses Manager</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Main</a></li>
+                    <li class="breadcrumb-item active">Addresses</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- Default box -->
+                <div class="card">
+                    <div class="card-header with-border">
+                        <button id="btnAddAddress" type="button" class="btn btn-primary" onclick="webapptest.addresses_manager.displayAddEditAddress(0)">Add Address</button>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="tblAddresses" class="table table-bordered table-striped dt-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.AddressCode)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                        <td>
+                                            <button class="btn btn-default" onclick="webapptest.addresses_manager.displayAddEditAddress(@item.Id)">Edit</button>
+                                            <button class="btn btn-danger" onclick="webapptest.addresses_manager.displayDeleteAddress(@item.Id)"> Delete</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="modal fade" id="addressFormModel" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-info">
+                                        <h3 id="title" class="modal-title">Create Address</h3>
+                                        <a href="#" class="close" data-dismiss="modal">×</a>
+                                    </div>
+                                    <div class="modal-body" id="addressFormModelDiv">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="card-footer">
+                        Footer
+                    </div>
+                    <!-- /.box-footer-->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+@section Scripts {
+    <script src="~/scripts/main/webapptest.addresses_manager.js"></script>
+
+    <!-- page script -->
+    <script>
+        $(function () {
+            webapptest.addresses_manager.displayListAddresses();
+        })
+    </script>
+}

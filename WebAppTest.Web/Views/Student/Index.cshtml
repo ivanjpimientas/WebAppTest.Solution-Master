@@ -1,0 +1,106 @@
+﻿@model IEnumerable<WebAppTest.Core.Entities.Student>
+@{
+    ViewData["Title"] = "Students Manager";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Students Manager</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Main</a></li>
+                    <li class="breadcrumb-item active">Students</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- Default box -->
+                <div class="card">
+                    <div class="card-header with-border">
+                        <button id="btnAddStudent" type="button" class="btn btn-primary" onclick="webapptest.students_manager.displayAddEditStudent(0)">Add Student</button>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="tblStudents" class="table table-bordered table-striped dt-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Num. Document</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Grade</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.NumDocument)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Grade)</td>
+                                    <td>
+                                        <button class="btn btn-default" onclick="webapptest.students_manager.displayAddEditStudent(@item.Id)">Edit</button>
+                                        <button class="btn btn-danger" onclick="webapptest.students_manager.displayDeleteStudent(@item.Id)"> Delete</button>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="modal fade" id="studentFormModel" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-info">
+                                        <h3 id="title" class="modal-title">Create Student</h3>
+                                        <a href="#" class="close" data-dismiss="modal">×</a>
+                                    </div>
+                                    <div class="modal-body" id="studentFormModelDiv">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="card-footer">
+                        Footer
+                    </div>
+                    <!-- /.box-footer-->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+@section Scripts {
+    <script src="~/scripts/main/webapptest.students_manager.js"></script>
+
+    <!-- page script -->
+    <script>
+        $(function () {
+            webapptest.students_manager.displayListStudents();
+            $('.datepicker').datepicker();
+        })
+    </script>
+}
